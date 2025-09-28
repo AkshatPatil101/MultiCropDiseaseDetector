@@ -7,7 +7,10 @@ WORKDIR /app
 # Copy the requirements file into the container at /app
 COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
+# Install PyTorch and Torchvision for CPU from the official source
+RUN pip install --no-cache-dir torch==2.8.0 torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Install the rest of the packages from your requirements file
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application's code
